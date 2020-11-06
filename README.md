@@ -5,7 +5,7 @@ For this project, we will be exploring publicly available data from LendingClub.
 We will try to create a model that will help predict this.  The lending club had a very interesting year in 2016, so let's check out some of their data and keep the context in mind. This data is from before they even went public.  We will use lending data from 2007-2010 and be trying to classify and predict whether or not the borrower paid back their loan in full. LendingClub is a US peer-to-peer lending company, headquartered in San Francisco, California. It was the first peer-to-peer lender to register its offerings as securities with the Securities and Exchange Commission (SEC) and to offer loan trading on a secondary market. LendingClub is the world's largest peer-to-peer lending platform.
 
 
-For this particular dataset, a decent amount of exploratory data analysis and data pre-processing needs to be done, along with feature selection engineering. This will help us to enhance our results as well as help us to improve our accuracy. While working with the deep-learning model, the number of neurons can be equal to the number of features involved after feature engineering and hidden-layers can be used according to your choice. For the activation function, we are using 'relu', loss function as binary-cross entropy, and optimizer as adam.
+For this particular dataset, a decent amount of exploratory data analysis and data pre-processing needs to be done, along with feature selection engineering. This will help us to enhance our results as well as help us to improve our accuracy. While working with the deep-learning model, the number of neurons can be equal to the number of features involved after feature engineering and hidden-layers can be used according to your choice. For the activation function, we are using 'relu', loss function as binary-cross entropy, and optimizer as adam. And before using random-forest classification, we will aslo use decision trees to get the importance of the ensemble trees and it's role in random-forest classification in order to improve the accuracy, to decorrelate some of the unuseful features, bagging and to avoid over-fitting. And for deep-learning model, we will be adding drop-out layer too in order to avoid over-fitting of data as well as data leakage.
 
 After performing descriptive statistics, predictive and inferential analysis, we can compare these two by measuring accuracy, precision,recall, and f1-score. We will also predict a class for new data using these two following models so that one can get the idea of accuracy and other parameters.
 
@@ -40,3 +40,37 @@ After performing descriptive statistics, predictive and inferential analysis, we
 26	mort_acc	Number of mortgage accounts.
 27	pub_rec_bankruptcies	Number of public record bankruptcies
 
+
+Results Obtained:-
+1. Deep-Learning Classification model with Dropout Layer:-
+          precision    recall  f1-score   support
+
+           0       0.98      0.44      0.61     15658
+           1       0.88      1.00      0.93     63386
+
+    accuracy                           0.89     79044
+   macro avg       0.93      0.72      0.77     79044
+weighted avg       0.90      0.89      0.87     79044
+
+2. Decision-Trees Classification Model :-
+            precision    recall  f1-score   support
+
+           0       0.56      0.60      0.58     15658
+           1       0.90      0.89      0.89     63386
+
+    accuracy                           0.83     79044
+   macro avg       0.73      0.74      0.74     79044
+weighted avg       0.83      0.83      0.83     79044
+
+3. Random-Forest Classification Model, with 300 decision trees:-
+            precision    recall  f1-score   support
+
+           0       0.97      0.45      0.61     15658
+           1       0.88      1.00      0.93     63386
+
+    accuracy                           0.89     79044
+   macro avg       0.92      0.72      0.77     79044
+weighted avg       0.90      0.89      0.87     79044
+
+
+Hence, we can see that, Random-Forest Classification Model and Deep-Learning Model has accuracy of around 89% that seems fine, this is due to because of the biasness present in the data, note that number of people who have paid their  amount are very large as compared to people who haven't paid, that's why we are getting this much accuracy. Note Decision-Tree is getting 83% accuracy which is okayish in this case since we already know that 80% of the people have paid the full loan amount as seen during exploratory data analysis.
